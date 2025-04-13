@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Shop</title>
+  <script>
+    async function searchProduct() {
+      const query = document.getElementById("search").value;
+      const res = await fetch("http://13.217.162.193:5000/api/search?product=" + encodeURIComponent(query));
+      const data = await res.json();
+      document.getElementById("results").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+  <h1>🛍️ Product Search</h1>
+  <input type="text" id="search" placeholder="Search product..." />
+  <button onclick="searchProduct()">Search</button>
+  <pre id="results" style="margin-top: 20px; background-color: #f0f0f0; padding: 10px;"></pre>
+</body>
+</html>
